@@ -344,7 +344,6 @@ MonoBehaviour:
   timeRemaining: 10
   timerIsRunning: 0
   roundDone: 0
-  player1Playing: 1
 --- !u!114 &551057643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,6 +357,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1points: {fileID: 1392322715}
+  player2points: {fileID: 1457288476}
+  points: 10
+  pointsPlayer2: 10
 --- !u!114 &551057644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -964,6 +966,7 @@ MonoBehaviour:
   Tile: {fileID: 637326710912927099, guid: 694d9274009d84a84b2c774415fd9989, type: 3}
   ColumnLength: 4
   RowHeight: 5
+  player1Playing: 0
 --- !u!4 &1585638712
 Transform:
   m_ObjectHideFlags: 0

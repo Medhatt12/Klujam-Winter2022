@@ -12,15 +12,21 @@ public class GameWorldControl : MonoBehaviour
     TileBehavior tileBehavior;
     bool once = false;
 
-
+    public static GameWorldControl instance;
 
     public GameObject[,] GameWorld;
 
     private float ySpacer = 0;
     private float xSpacer = 0;
 
+    public bool player1Playing;
+
     void Awake()
     {
+        
+        instance = this;
+
+        
         tileBehavior = Tile.GetComponent<TileBehavior>();
         GameWorld = new GameObject[ColumnLength, RowHeight];
         for (int i = 0; i < ColumnLength; i++)
@@ -43,29 +49,57 @@ public class GameWorldControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-    }
+       player1Playing=true;
+}
 
     // Update is called once per frame
     void Update()
     {
-        if(Timer.instance.roundDone == true & once == false)
+        if(Timer.instance.roundDone == true)
         {
 
             calculateScores();
-            once = true;
+            Timer.instance.roundDone = false;
         }
     }
     void calculateScores()
     {
-        int roundScore = 0;
+        int roundScoreplayer1 = 0;
+        int roundScoreplayer2 = 0;
         for (int i = 0; i < ColumnLength; i++)
         {
             for (int j = 0; j < RowHeight; j++)
             {
-                roundScore = roundScore + (GameWorld[i, j].GetComponent<TileBehavior>().numOfPlayer1fishes * GameWorld[i, j].GetComponent<TileBehavior>().hiddenAttribute);
+                roundScoreplayer1 = roundScoreplayer1 + (GameWorld[i, j].GetComponent<TileBehavior>().numOfPlayer1fishes * GameWorld[i, j].GetComponent<TileBehavior>().hiddenAttribute);
+                roundScoreplayer2 = roundScoreplayer2 + (GameWorld[i, j].GetComponent<TileBehavior>().numOfPlayer2fishes * GameWorld[i, j].GetComponent<TileBehavior>().hiddenAttribute);
             }
         }
-        pointsManager.instance.addPoints(roundScore);
+        pointsManager.instance.addPoints(roundScoreplayer1);
+        pointsManager.instance.addPointsPlayer2(roundScoreplayer2);
+
+        resetGameWorld();
+    }
+
+    public void player2Go()
+    {
+        player1Playing = false;
+        Timer.instance.resetTimer();
+    }
+
+    void resetGameWorld()
+    {
+        for (int i = 0; i < ColumnLength; i++)
+        {
+            for (int j = 0; j < RowHeight; j++)
+            {
+                GameWorld[i, j].GetComponent<TileBehavior>().hiddenAttribute = Random.Range(-4, 5);
+            }
+        }
+    }
+
+    public void player1Go()
+    {
+        player1Playing = true;
+        Timer.instance.resetTimer();
     }
 }

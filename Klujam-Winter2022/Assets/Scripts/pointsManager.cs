@@ -8,7 +8,9 @@ public class pointsManager : MonoBehaviour
 {
     public static pointsManager instance;
     public TextMeshProUGUI player1points;
-    int points = 10;
+    public TextMeshProUGUI player2points;
+    public int points = 10;
+    public int pointsPlayer2 = 10;
 
     void Awake()
     {
@@ -18,6 +20,7 @@ public class pointsManager : MonoBehaviour
     void Start()
     {
         player1points.text = " Player 1 points: " + points.ToString();
+        player2points.text = " Player 2 points: " + points.ToString();
     }
 
     public void addPoints(int pointsAdded)
@@ -25,11 +28,21 @@ public class pointsManager : MonoBehaviour
         points = points + pointsAdded;
         player1points.text = " Player 1 points: " + points.ToString();
     }
+    public void addPointsPlayer2(int pointsAdded)
+    {
+        pointsPlayer2 = pointsPlayer2 + pointsAdded;
+        player2points.text = " Player 1 points: " + pointsPlayer2.ToString();
+    }
 
     public void losePoint()
     {
         points = points - 1;
         player1points.text = " Player 1 points: " + points.ToString();
+    }
+    public void losePointPlayer2()
+    {
+        pointsPlayer2 = pointsPlayer2 - 1;
+        player2points.text = " Player 2 points: " + pointsPlayer2.ToString();
     }
     // Update is called once per frame
     void Update()

@@ -125,8 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 971b64a10dfa64afdbd76503faad46bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hiddenAttributeField: {fileID: 1617813562632713739}
   maxNumberOfPoints: 9
   numOfPlayer1fishes: 0
+  numOfPlayer2fishes: 0
   hiddenAttribute: 0
   isSelected: 0
 --- !u!1 &1617813562632713739
