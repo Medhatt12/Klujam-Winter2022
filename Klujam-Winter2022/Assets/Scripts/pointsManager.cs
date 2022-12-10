@@ -31,7 +31,7 @@ public class pointsManager : MonoBehaviour
     public void addPointsPlayer2(int pointsAdded)
     {
         pointsPlayer2 = pointsPlayer2 + pointsAdded;
-        player2points.text = " Player 1 points: " + pointsPlayer2.ToString();
+        player2points.text = " Player 2 points: " + pointsPlayer2.ToString();
     }
 
     public void losePoint()

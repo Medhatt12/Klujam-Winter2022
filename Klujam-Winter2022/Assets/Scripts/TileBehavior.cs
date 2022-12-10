@@ -5,6 +5,7 @@ using TMPro;
 
 public class TileBehavior : MonoBehaviour
 {
+   // public static TileBehavior instance;
 
     public GameObject hiddenAttributeField;
 
@@ -15,23 +16,29 @@ public class TileBehavior : MonoBehaviour
     public bool isSelected;
     bool once = false;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        //hiddenAttributeField.GetComponent<TextMeshPro>().text = hiddenAttribute.ToString();
+        hiddenAttributeField.GetComponent<TextMeshPro>().text = hiddenAttribute.ToString();
+        hiddenAttributeField.GetComponent<MeshRenderer>().enabled = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //hiddenAttributeField.GetComponent<TextMeshPro>().text = hiddenAttribute.ToString();
-        if (Timer.instance.roundDone == true)
-        {
-            //hiddenAttributeField.GetComponent<TextMeshPro>().text = hiddenAttribute.ToString();
-            hiddenAttributeField.GetComponent<TextMeshPro>().text = hiddenAttribute.ToString();
-            GameWorldControl.instance.showValues();
-            hiddenAttributeField.GetComponent<TextMeshPro>().text = "";
-        }
+        hiddenAttributeField.GetComponent<TextMeshPro>().text = hiddenAttribute.ToString();
+    }
+
+    public void showValues()
+    {
+        hiddenAttributeField.GetComponent<MeshRenderer>().enabled = true;
+    }
+    public void hideValues()
+    {
+        hiddenAttributeField.GetComponent<MeshRenderer>().enabled = false;
     }
     void OnMouseDown()
     {

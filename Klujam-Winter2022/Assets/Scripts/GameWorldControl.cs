@@ -50,18 +50,18 @@ public class GameWorldControl : MonoBehaviour
     void Start()
     {
        player1Playing=true;
-}
+    }
 
     // Update is called once per frame
     void Update()
     {
         if(Timer.instance.roundDone == true)
         {
-
-            calculateScores();
-            Timer.instance.roundDone = false;
+            StartCoroutine(waitTimer());
+            
         }
     }
+
     void calculateScores()
     {
         int roundScoreplayer1 = 0;
@@ -77,7 +77,6 @@ public class GameWorldControl : MonoBehaviour
         pointsManager.instance.addPoints(roundScoreplayer1);
         pointsManager.instance.addPointsPlayer2(roundScoreplayer2);
 
-        resetGameWorld();
     }
 
     public void player2Go()
@@ -93,6 +92,8 @@ public class GameWorldControl : MonoBehaviour
             for (int j = 0; j < RowHeight; j++)
             {
                 GameWorld[i, j].GetComponent<TileBehavior>().hiddenAttribute = Random.Range(-4, 5);
+                GameWorld[i, j].GetComponent<TileBehavior>().numOfPlayer1fishes = 0;
+                GameWorld[i, j].GetComponent<TileBehavior>().numOfPlayer2fishes = 0;
             }
         }
     }
@@ -103,9 +104,30 @@ public class GameWorldControl : MonoBehaviour
         Timer.instance.resetTimer();
     }
 
-    public IEnumerator showValues()
+    public IEnumerator waitTimer()
     {
+        calculateScores();
+        Timer.instance.roundDone = false;
+
+        for (int i = 0; i < ColumnLength; i++)
+        {
+            for (int j = 0; j < RowHeight; j++)
+            {
+                GameWorld[i, j].GetComponent<TileBehavior>().showValues();
+            }
+        }
 
         yield return new WaitForSeconds(3);
+
+        for (int i = 0; i < ColumnLength; i++)
+        {
+            for (int j = 0; j < RowHeight; j++)
+            {
+                GameWorld[i, j].GetComponent<TileBehavior>().hideValues();
+            }
+        }
+        resetGameWorld();
+        
+
     }
 }
