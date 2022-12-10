@@ -7,7 +7,7 @@ public class ResultPanelControll : LevelLoader
 {
     public TextMeshProUGUI textMeshLeft, textMeshRight;
     public TextMeshProUGUI playerNameLeft, playerNameRight;
-    public GameObject container;
+    public GameObject container, toHide;
     void Start()
     {
         playerNameLeft.text = GameManager.Instance.leftPlayerName;
@@ -16,31 +16,25 @@ public class ResultPanelControll : LevelLoader
 
     private void Update()
     {
-        if (pointsManager.instance.points < 0)
+        if (pointsManager.instance.points < 0 || pointsManager.instance.pointsPlayer2 < 0)
         {
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             container.SetActive(true);
-            textMeshLeft.SetText("Lost");
-            textMeshRight.SetText("Win");
-        }
-        if (pointsManager.instance.pointsPlayer2 < 0)
-        {
-            Time.timeScale = 0;
-            container.SetActive(true);
-            textMeshRight.SetText("Lost");
-            textMeshLeft.SetText("Win");
+            toHide.SetActive(false);
+            textMeshLeft.SetText("" + pointsManager.instance.points);
+            textMeshRight.SetText("" + pointsManager.instance.pointsPlayer2);
         }
     }
 
     public void ReplayOnClick()
     {
-        Time.timeScale = 1;
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+        //Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void MainMenuOnClick()
     {
-        Time.timeScale = 1;
-        StartCoroutine(LoadLevel(0));
+        //Time.timeScale = 1;
+        SceneManager.LoadScene(0);
     }
 
 }
