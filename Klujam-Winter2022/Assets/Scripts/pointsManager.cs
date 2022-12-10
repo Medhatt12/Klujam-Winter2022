@@ -47,6 +47,6 @@ public class pointsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (points < 0 || pointsPlayer2 < 0) GameManager.Instance.GameOver();
+        
     }
 }
