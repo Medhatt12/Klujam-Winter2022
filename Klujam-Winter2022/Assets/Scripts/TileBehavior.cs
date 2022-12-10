@@ -12,6 +12,7 @@ public class TileBehavior : MonoBehaviour
     public GameObject player2Chip;
     public GameObject player1Clicks;
     public GameObject player2Clicks;
+    public bool isClicked = false;
 
     public int maxNumberOfPoints = 9;
     public int numOfPlayer1fishes = 0;
@@ -63,7 +64,7 @@ public class TileBehavior : MonoBehaviour
     }
     void OnMouseDown()
     {
-        
+        isClicked = true;
         if (maxNumberOfPoints >0 && Timer.instance.timeRemaining>0&& GameWorldControl.instance.player1Playing == true)
         {
             if (pointsManager.instance.points > 0)

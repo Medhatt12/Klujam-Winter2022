@@ -123,7 +123,10 @@ public class GameWorldControl : MonoBehaviour
         {
             for (int j = 0; j < RowHeight; j++)
             {
-                GameWorld[i, j].GetComponent<TileBehavior>().showValues();
+                if(GameWorld[i, j].GetComponent<TileBehavior>().isClicked == true) {
+                    GameWorld[i, j].GetComponent<TileBehavior>().showValues();
+                }
+                
             }
         }
 
@@ -134,6 +137,7 @@ public class GameWorldControl : MonoBehaviour
         {
             for (int j = 0; j < RowHeight; j++)
             {
+                GameWorld[i, j].GetComponent<TileBehavior>().isClicked = false;
                 GameWorld[i, j].GetComponent<TileBehavior>().hideValues();
             }
         }
