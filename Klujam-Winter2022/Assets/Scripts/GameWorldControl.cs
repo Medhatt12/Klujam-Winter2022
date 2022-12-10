@@ -7,9 +7,12 @@ public class GameWorldControl : MonoBehaviour
     
     [SerializeField] GameObject Tile;
 
+    public Sprite[] gameSprites;
+
     public int ColumnLength;
     public int RowHeight;
     TileBehavior tileBehavior;
+    public int counter =0;
 
     public static GameWorldControl instance;
 
@@ -31,14 +34,17 @@ public class GameWorldControl : MonoBehaviour
         for (int i = 0; i < ColumnLength; i++)
         {
             ySpacer = 0;
-            xSpacer = xSpacer + 0.2f;
+            xSpacer = xSpacer + 1.1f;
             for (int j = 0; j < RowHeight; j++)
             {
 
                 GameWorld[i, j] = (GameObject)Instantiate(Tile, new Vector3(i - 2.78f, j - 2.78f, 0), Quaternion.identity);
                 GameWorld[i,j].GetComponent<TileBehavior>().hiddenAttribute = Random.Range(-4, 5);
                 GameWorld[i, j].transform.Translate(new Vector3(xSpacer, ySpacer, 0));
-                ySpacer = ySpacer + 0.2f;
+                ySpacer = ySpacer + 0.9f;
+                GameWorld[i, j].GetComponent<SpriteRenderer>().sprite = gameSprites[counter];
+                counter++;
+                
 
             }
 

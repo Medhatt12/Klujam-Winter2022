@@ -14,7 +14,8 @@ public class TileBehavior : MonoBehaviour
     public int numOfPlayer2fishes = 0;
     public int hiddenAttribute;
     public bool isSelected;
-
+    public Sprite currImage;
+    //public Sprite[] gameSprites;
     
 
     // Start is called before the first frame update
