@@ -14,9 +14,12 @@ public class Timer : MonoBehaviour
     public bool timerIsRunning = false;
     public bool roundDone=false;
     public bool once = false;
+    public bool countdownOn = false;
+    
 
     void Awake()
     {
+        //AudioSource audio = ;
         instance = this;
 
     }
@@ -26,6 +29,7 @@ public class Timer : MonoBehaviour
     {
         if(timerIsRunning == false)
         {
+            GetComponent<AudioSource>().Stop();
             CurrentPlayer.text = "Randoms";
         }
 
@@ -37,6 +41,14 @@ public class Timer : MonoBehaviour
                 CurrentPlayer.text = GameManager.Instance.leftPlayerName + " turn";
                 if (timerIsRunning == true)
                 {
+                    if (countdownOn == false)
+                    {
+
+                        GetComponent<AudioSource>().Play();
+                        countdownOn = true;
+                        
+                    }
+                    
                     if (timeRemaining > 0)
                     {
 
@@ -45,6 +57,7 @@ public class Timer : MonoBehaviour
                     }
                     else
                     {
+                        
                         timeRemaining = 0;
                         TimerText.text = string.Format("{0:00}:{1:00}", 0, 0);
                         timerIsRunning = false;
@@ -53,6 +66,7 @@ public class Timer : MonoBehaviour
                             GameWorldControl.instance.player2Go();
                             once = true;
                         }
+                        countdownOn = false;
                     }
                 }
             }
@@ -63,6 +77,15 @@ public class Timer : MonoBehaviour
 
                 if (timerIsRunning == true)
                 {
+                    if (countdownOn == false)
+                    {
+
+                        GetComponent<AudioSource>().Play();
+                        countdownOn = true;
+
+                    }
+
+                   
                     if (timeRemaining > 0)
                     {
 
@@ -80,6 +103,7 @@ public class Timer : MonoBehaviour
                             GameWorldControl.instance.player1Go();
                             once = false;
                         }
+                        countdownOn = false;
                     }
                 }
             }

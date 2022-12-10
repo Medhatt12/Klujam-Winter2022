@@ -15,12 +15,14 @@ public class TileBehavior : MonoBehaviour
     public int hiddenAttribute;
     public bool isSelected;
     public Sprite currImage;
+    public AudioClip[] clickClips;
     //public Sprite[] gameSprites;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        AudioSource audio = GetComponent<AudioSource>();
         hiddenAttributeField.GetComponent<TextMeshPro>().text = hiddenAttribute.ToString();
         hiddenAttributeField.GetComponent<MeshRenderer>().enabled = false;
 
@@ -47,6 +49,9 @@ public class TileBehavior : MonoBehaviour
         {
             if (pointsManager.instance.points > 0)
             {
+                AudioSource audio = GetComponent<AudioSource>();
+                audio.clip = clickClips[0];
+                audio.Play();
                 numOfPlayer1fishes = numOfPlayer1fishes + 1;
                 maxNumberOfPoints = maxNumberOfPoints - 1;
                 pointsManager.instance.losePoint();
@@ -58,6 +63,9 @@ public class TileBehavior : MonoBehaviour
         {
             if (pointsManager.instance.pointsPlayer2 > 0)
             {
+                AudioSource audio = GetComponent<AudioSource>();
+                audio.clip = clickClips[1];
+                audio.Play();
                 numOfPlayer2fishes = numOfPlayer2fishes + 1;
                 maxNumberOfPoints = maxNumberOfPoints - 1;
                 pointsManager.instance.losePointPlayer2();
