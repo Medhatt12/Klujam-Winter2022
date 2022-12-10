@@ -9,9 +9,11 @@ public class Timer : MonoBehaviour
 
     public static Timer instance;
     public TextMeshProUGUI TimerText;
-    public float timeRemaining = 10;
+    public TextMeshProUGUI CurrentPlayer;
+    public float timeRemaining=10;
     public bool timerIsRunning = false;
     public bool roundDone=false;
+    public bool player1Playing = true;
 
     void Awake()
     {
@@ -20,21 +22,53 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if (timerIsRunning == true)
+        if (player1Playing == true)
         {
-            if (timeRemaining > 0)
+           // timeRemaining = 10;
+            CurrentPlayer.text = "Player 1 turn";
+            timerIsRunning = true;
+            if (timerIsRunning == true)
             {
+                if (timeRemaining > 0)
+                {
 
-                timeRemaining -= Time.deltaTime;
-                // TimerText.text = " Timer: " + timeRemaining.ToString() + " seconds";
-                DisplayTime(timeRemaining);
+                    timeRemaining -= Time.deltaTime;
+                    // TimerText.text = " Timer: " + timeRemaining.ToString() + " seconds";
+                    DisplayTime(timeRemaining);
+                }
+                else
+                {
+                    // timeRemaining = 0;
+                    TimerText.text = string.Format("{0:00}:{1:00}", 0, 0);
+                    timerIsRunning = false;
+                    roundDone = true;
+                    player1Playing = false;
+                }
             }
-            else
+        }
+        else
+        {
+            timeRemaining = 10;
+            CurrentPlayer.text = "Player 2 turn";
+            timerIsRunning = true;
+            if (timerIsRunning == true)
             {
-               // timeRemaining = 0;
-                TimerText.text = string.Format("{0:00}:{1:00}", 0, 0);
-                timerIsRunning = false;
-                roundDone = true;
+                if (timeRemaining > 0)
+                {
+
+                    timeRemaining -= Time.deltaTime;
+                    // TimerText.text = " Timer: " + timeRemaining.ToString() + " seconds";
+                    DisplayTime(timeRemaining);
+                }
+                else
+                {
+                    // timeRemaining = 0;
+                    TimerText.text = string.Format("{0:00}:{1:00}", 0, 0);
+                    timerIsRunning = false;
+                    roundDone = true;
+                    player1Playing = true;
+                    timeRemaining = 10;
+                }
             }
         }
         
