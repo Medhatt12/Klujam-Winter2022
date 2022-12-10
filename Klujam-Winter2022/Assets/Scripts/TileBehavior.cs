@@ -24,11 +24,14 @@ public class TileBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hiddenAttributeField.GetComponent<TextMeshPro>().text = hiddenAttribute.ToString();
-        //if(Timer.instance.roundDone == true)
-        //{
-        //    hiddenAttributeField.GetComponent<TextMeshPro>().text = hiddenAttribute.ToString();
-        //}
+        //hiddenAttributeField.GetComponent<TextMeshPro>().text = hiddenAttribute.ToString();
+        if (Timer.instance.roundDone == true)
+        {
+            //hiddenAttributeField.GetComponent<TextMeshPro>().text = hiddenAttribute.ToString();
+            hiddenAttributeField.GetComponent<TextMeshPro>().text = hiddenAttribute.ToString();
+            GameWorldControl.instance.showValues();
+            hiddenAttributeField.GetComponent<TextMeshPro>().text = "";
+        }
     }
     void OnMouseDown()
     {

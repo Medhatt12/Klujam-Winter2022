@@ -102,4 +102,10 @@ public class GameWorldControl : MonoBehaviour
         player1Playing = true;
         Timer.instance.resetTimer();
     }
+
+    public IEnumerator showValues()
+    {
+
+        yield return new WaitForSeconds(3);
+    }
 }
