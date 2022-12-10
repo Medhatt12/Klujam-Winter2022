@@ -8,6 +8,10 @@ public class TileBehavior : MonoBehaviour
    // public static TileBehavior instance;
 
     public GameObject hiddenAttributeField;
+    public GameObject player1Chip;
+    public GameObject player2Chip;
+    public GameObject player1Clicks;
+    public GameObject player2Clicks;
 
     public int maxNumberOfPoints = 9;
     public int numOfPlayer1fishes = 0;
@@ -22,7 +26,13 @@ public class TileBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player1Chip.SetActive(false);
+        player2Chip.SetActive(false);
+        player1Clicks.GetComponent<MeshRenderer>().enabled = false;
+        player2Clicks.GetComponent<MeshRenderer>().enabled = false;
+
         AudioSource audio = GetComponent<AudioSource>();
+
         hiddenAttributeField.GetComponent<TextMeshPro>().text = hiddenAttribute.ToString();
         hiddenAttributeField.GetComponent<MeshRenderer>().enabled = false;
 
@@ -57,6 +67,10 @@ public class TileBehavior : MonoBehaviour
                 pointsManager.instance.losePoint();
                 this.GetComponent<SpriteRenderer>().color = Color.blue;
                 Debug.Log("Hidden attribute for this tile is: " + hiddenAttribute);
+
+                player1Chip.SetActive(true);
+                player1Clicks.GetComponent<MeshRenderer>().enabled = true;
+                player1Clicks.GetComponent<TextMeshPro>().text = numOfPlayer1fishes.ToString();
             }
         }
         if (maxNumberOfPoints > 0 && Timer.instance.timeRemaining > 0 && GameWorldControl.instance.player1Playing == false)
@@ -71,6 +85,10 @@ public class TileBehavior : MonoBehaviour
                 pointsManager.instance.losePointPlayer2();
                 this.GetComponent<SpriteRenderer>().color = Color.blue;
                 Debug.Log("Hidden attribute for this tile is: " + hiddenAttribute);
+
+                player2Chip.SetActive(true);
+                player2Clicks.GetComponent<MeshRenderer>().enabled = true;
+                player2Clicks.GetComponent<TextMeshPro>().text = numOfPlayer2fishes.ToString();
             }
         }
 
