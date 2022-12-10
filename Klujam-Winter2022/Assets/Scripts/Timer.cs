@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Timer : MonoBehaviour
 {
 
     public static Timer instance;
-    public Text TimerText;
+    public TextMeshProUGUI TimerText;
     public float timeRemaining = 10;
     public bool timerIsRunning = false;
+    public bool roundDone=false;
 
     void Awake()
     {
@@ -32,6 +34,7 @@ public class Timer : MonoBehaviour
                // timeRemaining = 0;
                 TimerText.text = string.Format("{0:00}:{1:00}", 0, 0);
                 timerIsRunning = false;
+                roundDone = true;
             }
         }
         

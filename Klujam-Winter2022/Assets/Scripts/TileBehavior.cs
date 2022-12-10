@@ -8,7 +8,6 @@ public class TileBehavior : MonoBehaviour
     public int numOfPlayer1fishes = 0;
     public int hiddenAttribute;
     public bool isSelected;
-    [SerializeField] GameObject selectedBox;
     bool once = false;
 
     // Start is called before the first frame update
