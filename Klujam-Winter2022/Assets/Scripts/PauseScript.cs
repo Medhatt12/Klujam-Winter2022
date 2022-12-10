@@ -31,6 +31,7 @@ public class PauseScript : MonoBehaviour
     }
     void GoToMMainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 }

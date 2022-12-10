@@ -34,7 +34,7 @@ public class Timer : MonoBehaviour
             if (GameWorldControl.instance.player1Playing == true)
             {
 
-                CurrentPlayer.text = "Player 1 turn";
+                CurrentPlayer.text = GameManager.Instance.leftPlayerName + " turn";
                 if (timerIsRunning == true)
                 {
                     if (timeRemaining > 0)
@@ -59,7 +59,7 @@ public class Timer : MonoBehaviour
             else
             {
 
-                CurrentPlayer.text = "Player 2 turn";
+                CurrentPlayer.text = GameManager.Instance.rightPlayerName + " turn";
 
                 if (timerIsRunning == true)
                 {
