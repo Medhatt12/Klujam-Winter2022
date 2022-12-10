@@ -118,7 +118,7 @@ public class GameWorldControl : MonoBehaviour
             for (int j = 0; j < RowHeight; j++)
             {
                 GameWorld[i, j].GetComponent<TileBehavior>().showValues();
-                GameWorld[i, j].GetComponent<TileBehavior>().
+                //GameWorld[i, j].GetComponent<TileBehavior>().
             }
         }
 
