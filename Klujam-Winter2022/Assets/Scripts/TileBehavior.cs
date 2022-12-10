@@ -13,6 +13,8 @@ public class TileBehavior : MonoBehaviour
     public GameObject player1Clicks;
     public GameObject player2Clicks;
     public bool isClicked = false;
+    public Color p1color;
+    public Color p2color;
 
     public int maxNumberOfPoints = 9;
     public int numOfPlayer1fishes = 0;
@@ -23,11 +25,17 @@ public class TileBehavior : MonoBehaviour
     public AudioClip[] clickClips;
 
     public bool once = false;
-    
+
+    public Vector3 cachedScale;
+
 
     // Start is called before the first frame update
     void Start()
     {
+
+        cachedScale = this.GetComponent<RectTransform>().transform.localScale;
+
+
         player1Chip.SetActive(false);
         player2Chip.SetActive(false);
         player1Clicks.GetComponent<MeshRenderer>().enabled = false;
@@ -75,7 +83,8 @@ public class TileBehavior : MonoBehaviour
                 numOfPlayer1fishes = numOfPlayer1fishes + 1;
                 maxNumberOfPoints = maxNumberOfPoints - 1;
                 pointsManager.instance.losePoint();
-                this.GetComponent<SpriteRenderer>().color = Color.blue;
+                //this.GetComponent<SpriteRenderer>().color = new Color(242, 46, 101);
+                this.GetComponent<SpriteRenderer>().color = Color.red;
                 Debug.Log("Hidden attribute for this tile is: " + hiddenAttribute);
 
                 if (Timer.instance.timerIsRunning == true)
@@ -97,6 +106,7 @@ public class TileBehavior : MonoBehaviour
                 numOfPlayer2fishes = numOfPlayer2fishes + 1;
                 maxNumberOfPoints = maxNumberOfPoints - 1;
                 pointsManager.instance.losePointPlayer2();
+                // this.GetComponent<SpriteRenderer>().color = new Color(25, 148, 222);
                 this.GetComponent<SpriteRenderer>().color = Color.blue;
                 Debug.Log("Hidden attribute for this tile is: " + hiddenAttribute);
 
@@ -114,5 +124,16 @@ public class TileBehavior : MonoBehaviour
     void OnMouseUp()
     {
         this.GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+
+    void OnMouseOver()
+    {
+        this.GetComponent<RectTransform>().transform.localScale = new Vector3(1.08F, 1.08f, 1.08f);
+     //   transform.localScale += new Vector3(0.4F, 0.4f, 0.4f);
+    }
+    void OnMouseExit()
+    {
+        this.GetComponent<RectTransform>().transform.localScale = cachedScale;
     }
 }

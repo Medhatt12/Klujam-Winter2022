@@ -141,6 +141,9 @@ MonoBehaviour:
   player2Chip: {fileID: 3060903775595680404}
   player1Clicks: {fileID: 3221066867019614538}
   player2Clicks: {fileID: 2538000590056173816}
+  isClicked: 0
+  p1color: {r: 0.9490197, g: 0.18039216, b: 0.39607847, a: 0}
+  p2color: {r: 0.098039225, g: 0.5803922, b: 0.8705883, a: 0}
   maxNumberOfPoints: 9
   numOfPlayer1fishes: 0
   numOfPlayer2fishes: 0
@@ -151,6 +154,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 391a88e71cacb2445a5056083e098c9c, type: 3}
   - {fileID: 8300000, guid: 54ffa619ff7d60a4c8e02e4720afdf00, type: 3}
   once: 0
+  cachedScale: {x: 0, y: 0, z: 0}
 --- !u!222 &4079916090873227626
 CanvasRenderer:
   m_ObjectHideFlags: 0
