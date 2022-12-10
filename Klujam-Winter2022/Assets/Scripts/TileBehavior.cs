@@ -20,7 +20,8 @@ public class TileBehavior : MonoBehaviour
     public bool isSelected;
     public Sprite currImage;
     public AudioClip[] clickClips;
-    //public Sprite[] gameSprites;
+
+    public bool once = false;
     
 
     // Start is called before the first frame update
@@ -42,6 +43,14 @@ public class TileBehavior : MonoBehaviour
     void Update()
     {
         hiddenAttributeField.GetComponent<TextMeshPro>().text = hiddenAttribute.ToString();
+        if (Timer.instance.timerIsRunning == false&&once==false)
+        {
+            player1Chip.SetActive(false);
+            player2Chip.SetActive(false);
+            player1Clicks.GetComponent<MeshRenderer>().enabled = false;
+            player2Clicks.GetComponent<MeshRenderer>().enabled = false;
+            once = true;
+        }
     }
 
     public void showValues()
@@ -68,9 +77,13 @@ public class TileBehavior : MonoBehaviour
                 this.GetComponent<SpriteRenderer>().color = Color.blue;
                 Debug.Log("Hidden attribute for this tile is: " + hiddenAttribute);
 
-                player1Chip.SetActive(true);
-                player1Clicks.GetComponent<MeshRenderer>().enabled = true;
-                player1Clicks.GetComponent<TextMeshPro>().text = numOfPlayer1fishes.ToString();
+                if (Timer.instance.timerIsRunning == true)
+                {
+                    player1Chip.SetActive(true);
+                    player1Clicks.GetComponent<MeshRenderer>().enabled = true;
+                    player1Clicks.GetComponent<TextMeshPro>().text = numOfPlayer1fishes.ToString();
+                    once = false;
+                }
             }
         }
         if (maxNumberOfPoints > 0 && Timer.instance.timeRemaining > 0 && GameWorldControl.instance.player1Playing == false)
@@ -86,9 +99,13 @@ public class TileBehavior : MonoBehaviour
                 this.GetComponent<SpriteRenderer>().color = Color.blue;
                 Debug.Log("Hidden attribute for this tile is: " + hiddenAttribute);
 
-                player2Chip.SetActive(true);
-                player2Clicks.GetComponent<MeshRenderer>().enabled = true;
-                player2Clicks.GetComponent<TextMeshPro>().text = numOfPlayer2fishes.ToString();
+                if (Timer.instance.timerIsRunning == true)
+                {
+                    player2Chip.SetActive(true);
+                    player2Clicks.GetComponent<MeshRenderer>().enabled = true;
+                    player2Clicks.GetComponent<TextMeshPro>().text = numOfPlayer2fishes.ToString();
+                    once = false;
+                }
             }
         }
 
