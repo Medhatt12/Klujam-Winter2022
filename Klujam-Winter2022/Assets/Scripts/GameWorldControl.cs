@@ -10,7 +10,6 @@ public class GameWorldControl : MonoBehaviour
     public int ColumnLength;
     public int RowHeight;
     TileBehavior tileBehavior;
-    bool once = false;
 
     public static GameWorldControl instance;
 
@@ -76,6 +75,10 @@ public class GameWorldControl : MonoBehaviour
         }
         pointsManager.instance.addPoints(roundScoreplayer1);
         pointsManager.instance.addPointsPlayer2(roundScoreplayer2);
+        if(pointsManager.instance.points<=0 | pointsManager.instance.pointsPlayer2 <= 0)
+        {
+            checkWinner();
+        }
 
     }
 
@@ -108,7 +111,8 @@ public class GameWorldControl : MonoBehaviour
     {
         calculateScores();
         Timer.instance.roundDone = false;
-
+        Timer.instance.timerIsRunning = false; 
+        Timer.instance.CurrentPlayer.text = "random Values";
         for (int i = 0; i < ColumnLength; i++)
         {
             for (int j = 0; j < RowHeight; j++)
@@ -118,6 +122,7 @@ public class GameWorldControl : MonoBehaviour
         }
 
         yield return new WaitForSeconds(3);
+        
 
         for (int i = 0; i < ColumnLength; i++)
         {
@@ -126,8 +131,21 @@ public class GameWorldControl : MonoBehaviour
                 GameWorld[i, j].GetComponent<TileBehavior>().hideValues();
             }
         }
+        Timer.instance.timerIsRunning = true;
         resetGameWorld();
         
 
+    }
+
+    public void checkWinner()
+    {
+        if (pointsManager.instance.points > pointsManager.instance.pointsPlayer2)
+        {
+            Debug.Log("PLAYER 1 IS THE WINNER");
+        }
+        else
+        {
+            Debug.Log("PLAYER 2 IS THE WINNER");
+        }
     }
 }

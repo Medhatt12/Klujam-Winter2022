@@ -13,7 +13,7 @@ public class Timer : MonoBehaviour
     public float timeRemaining=10;
     public bool timerIsRunning = false;
     public bool roundDone=false;
-    bool once = false;
+    public bool once = false;
 
     void Awake()
     {
@@ -24,12 +24,16 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        
-        if(pointsManager.instance.points > 0 && pointsManager.instance.pointsPlayer2 > 0)
+        if(timerIsRunning == false)
+        {
+            CurrentPlayer.text = "Randoms";
+        }
+
+        if (pointsManager.instance.points >= 0 && pointsManager.instance.pointsPlayer2 >= 0)
         {
             if (GameWorldControl.instance.player1Playing == true)
             {
-                
+
                 CurrentPlayer.text = "Player 1 turn";
                 if (timerIsRunning == true)
                 {
@@ -54,7 +58,7 @@ public class Timer : MonoBehaviour
             }
             else
             {
-                
+
                 CurrentPlayer.text = "Player 2 turn";
 
                 if (timerIsRunning == true)
@@ -79,6 +83,13 @@ public class Timer : MonoBehaviour
                     }
                 }
             }
+        }
+
+        if (pointsManager.instance.points < 0 && pointsManager.instance.pointsPlayer2 < 0)
+        {
+            timerIsRunning = false;
+            GameWorldControl.instance.checkWinner();
+
         }
     }
 

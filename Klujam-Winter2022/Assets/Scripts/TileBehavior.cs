@@ -14,7 +14,6 @@ public class TileBehavior : MonoBehaviour
     public int numOfPlayer2fishes = 0;
     public int hiddenAttribute;
     public bool isSelected;
-    bool once = false;
 
     
 
@@ -42,21 +41,28 @@ public class TileBehavior : MonoBehaviour
     }
     void OnMouseDown()
     {
+        
         if (maxNumberOfPoints >0 && Timer.instance.timeRemaining>0&& GameWorldControl.instance.player1Playing == true)
         {
-            numOfPlayer1fishes = numOfPlayer1fishes + 1;
-            maxNumberOfPoints = maxNumberOfPoints - 1;
-            pointsManager.instance.losePoint();
-            this.GetComponent<SpriteRenderer>().color = Color.blue;
-            Debug.Log("Hidden attribute for this tile is: " + hiddenAttribute);
+            if (pointsManager.instance.points > 0)
+            {
+                numOfPlayer1fishes = numOfPlayer1fishes + 1;
+                maxNumberOfPoints = maxNumberOfPoints - 1;
+                pointsManager.instance.losePoint();
+                this.GetComponent<SpriteRenderer>().color = Color.blue;
+                Debug.Log("Hidden attribute for this tile is: " + hiddenAttribute);
+            }
         }
         if (maxNumberOfPoints > 0 && Timer.instance.timeRemaining > 0 && GameWorldControl.instance.player1Playing == false)
         {
-            numOfPlayer2fishes = numOfPlayer2fishes + 1;
-            maxNumberOfPoints = maxNumberOfPoints - 1;
-            pointsManager.instance.losePointPlayer2();
-            this.GetComponent<SpriteRenderer>().color = Color.blue;
-            Debug.Log("Hidden attribute for this tile is: " + hiddenAttribute);
+            if (pointsManager.instance.pointsPlayer2 > 0)
+            {
+                numOfPlayer2fishes = numOfPlayer2fishes + 1;
+                maxNumberOfPoints = maxNumberOfPoints - 1;
+                pointsManager.instance.losePointPlayer2();
+                this.GetComponent<SpriteRenderer>().color = Color.blue;
+                Debug.Log("Hidden attribute for this tile is: " + hiddenAttribute);
+            }
         }
 
     }
