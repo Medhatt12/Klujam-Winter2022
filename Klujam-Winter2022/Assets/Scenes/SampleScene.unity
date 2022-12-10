@@ -344,6 +344,7 @@ MonoBehaviour:
   timeRemaining: 10
   timerIsRunning: 0
   roundDone: 0
+  once: 0
 --- !u!114 &551057643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -965,7 +966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tile: {fileID: 637326710912927099, guid: 694d9274009d84a84b2c774415fd9989, type: 3}
   ColumnLength: 4
-  RowHeight: 5
+  RowHeight: 4
   player1Playing: 0
 --- !u!4 &1585638712
 Transform:
