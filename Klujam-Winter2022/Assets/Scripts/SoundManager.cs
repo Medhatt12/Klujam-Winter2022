@@ -6,8 +6,10 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
+
     [SerializeField]
     private AudioClip UIButonClickSound;
+    public Action OnButtonClicked;
 
     public float Volume = 1f;
 
@@ -19,6 +21,7 @@ public class SoundManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            OnButtonClicked += PlayButtonClick;
         }
         else
         {
@@ -31,6 +34,11 @@ public class SoundManager : MonoBehaviour
     private void Update()
     {
         source.volume = Volume;
+    }
+
+    private void PlayButtonClick()
+    {
+        source.PlayOneShot(UIButonClickSound);
     }
 
 }
