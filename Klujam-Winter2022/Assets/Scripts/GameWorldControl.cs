@@ -38,10 +38,10 @@ public class GameWorldControl : MonoBehaviour
             for (int j = 0; j < RowHeight; j++)
             {
 
-                GameWorld[i, j] = (GameObject)Instantiate(Tile, new Vector3(i - 2.78f, j - 2.78f, 0), Quaternion.identity);
+                GameWorld[i, j] = (GameObject)Instantiate(Tile, new Vector3(i - 4.5f, j - 3.6f, 0), Quaternion.identity);
                 GameWorld[i,j].GetComponent<TileBehavior>().hiddenAttribute = Random.Range(-4, 5);
                 GameWorld[i, j].transform.Translate(new Vector3(xSpacer, ySpacer, 0));
-                ySpacer = ySpacer + 0.9f;
+                ySpacer = ySpacer + 1.1f;
                 GameWorld[i, j].GetComponent<SpriteRenderer>().sprite = gameSprites[counter];
                 counter++;
                 
