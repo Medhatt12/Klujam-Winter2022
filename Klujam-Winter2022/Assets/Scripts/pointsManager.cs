@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class pointsManager : MonoBehaviour
 {
     public static pointsManager instance;
-    public Text player1points;
+    public TextMeshProUGUI player1points;
     int points = 10;
 
     void Awake()

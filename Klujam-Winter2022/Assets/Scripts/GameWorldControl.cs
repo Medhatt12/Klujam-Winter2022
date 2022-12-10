@@ -10,6 +10,7 @@ public class GameWorldControl : MonoBehaviour
     public int ColumnLength;
     public int RowHeight;
     TileBehavior tileBehavior;
+    bool once = false;
 
 
 
@@ -48,6 +49,23 @@ public class GameWorldControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Timer.instance.roundDone == true & once == false)
+        {
 
+            calculateScores();
+            once = true;
+        }
+    }
+    void calculateScores()
+    {
+        int roundScore = 0;
+        for (int i = 0; i < ColumnLength; i++)
+        {
+            for (int j = 0; j < RowHeight; j++)
+            {
+                roundScore = roundScore + (GameWorld[i, j].GetComponent<TileBehavior>().numOfPlayer1fishes * GameWorld[i, j].GetComponent<TileBehavior>().hiddenAttribute);
+            }
+        }
+        pointsManager.instance.addPoints(roundScore);
     }
 }
