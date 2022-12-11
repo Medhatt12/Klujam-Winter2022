@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour
     public static Timer instance;
     public TextMeshProUGUI TimerText;
     public TextMeshProUGUI CurrentPlayer;
-    public float timeRemaining=10;
+    public float timeRemaining=15;
     public bool timerIsRunning = false;
     public bool roundDone=false;
     public bool once = false;
@@ -44,7 +44,8 @@ public class Timer : MonoBehaviour
                     if (countdownOn == false)
                     {
 
-                        GetComponent<AudioSource>().Play();
+                        //GetComponent<AudioSource>().Play();
+                        startCounterAudioAfter5secs();
                         countdownOn = true;
                         
                     }
@@ -80,7 +81,8 @@ public class Timer : MonoBehaviour
                     if (countdownOn == false)
                     {
 
-                        GetComponent<AudioSource>().Play();
+                        //GetComponent<AudioSource>().Play();
+                        startCounterAudioAfter5secs();
                         countdownOn = true;
 
                     }
@@ -140,6 +142,12 @@ public class Timer : MonoBehaviour
         yield return new WaitForSeconds(5);
     }
 
+    IEnumerator startCounterAudioAfter5secs()
+    {
+        
+        yield return new WaitForSeconds(5);
+        GetComponent<AudioSource>().Play();
+    }
 
     public void resetTimer()
     {

@@ -342,7 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimerText: {fileID: 700340476}
   CurrentPlayer: {fileID: 1929379907}
-  timeRemaining: 10
+  timeRemaining: 15
   timerIsRunning: 0
   roundDone: 0
   once: 0
