@@ -44,8 +44,7 @@ public class Timer : MonoBehaviour
                     if (countdownOn == false)
                     {
 
-                        //GetComponent<AudioSource>().Play();
-                        startCounterAudioAfter5secs();
+                        GetComponent<AudioSource>().Play();
                         countdownOn = true;
                         
                     }
@@ -81,8 +80,7 @@ public class Timer : MonoBehaviour
                     if (countdownOn == false)
                     {
 
-                        //GetComponent<AudioSource>().Play();
-                        startCounterAudioAfter5secs();
+                        GetComponent<AudioSource>().Play();
                         countdownOn = true;
 
                     }
@@ -123,7 +121,7 @@ public class Timer : MonoBehaviour
     void Start()
     {
         timerIsRunning = true;
-        timeRemaining = 10;
+        timeRemaining = 15;
     }
 
     void DisplayTime(float timeToDisplay)
@@ -142,16 +140,10 @@ public class Timer : MonoBehaviour
         yield return new WaitForSeconds(5);
     }
 
-    IEnumerator startCounterAudioAfter5secs()
-    {
-        
-        yield return new WaitForSeconds(5);
-        GetComponent<AudioSource>().Play();
-    }
 
     public void resetTimer()
     {
-        timeRemaining = 10;
+        timeRemaining = 15;
         timerIsRunning = true;
     }
 }
