@@ -18,7 +18,7 @@ public class ResultPanelControll : LevelLoader
 
     private void Update()
     {
-        if (pointsManager.instance.points < 0 || pointsManager.instance.pointsPlayer2 < 0)
+        if (GameWorldControl.instance.gameFinished == true)
         {
             //Time.timeScale = 0;
             //GameObject.Find("GameController").GetComponent<AudioSource>().Stop();
