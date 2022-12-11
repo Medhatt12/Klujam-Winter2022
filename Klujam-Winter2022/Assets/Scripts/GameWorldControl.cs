@@ -23,6 +23,8 @@ public class GameWorldControl : MonoBehaviour
 
     public bool player1Playing;
 
+    public AudioClip victoryfx;
+
     void Awake()
     {
         
@@ -152,10 +154,18 @@ public class GameWorldControl : MonoBehaviour
         if (pointsManager.instance.points > pointsManager.instance.pointsPlayer2)
         {
             Debug.Log("PLAYER 1 IS THE WINNER");
+            GetComponent<AudioSource>().Stop();
+            GetComponent<AudioSource>().clip = victoryfx;
+            GetComponent<AudioSource>().Play();
+            GetComponent<AudioSource>().loop = false;
         }
         else
         {
             Debug.Log("PLAYER 2 IS THE WINNER");
+            GetComponent<AudioSource>().Stop();
+            GetComponent<AudioSource>().clip = victoryfx;
+            GetComponent<AudioSource>().Play();
+            GetComponent<AudioSource>().loop = false;
         }
     }
 }
