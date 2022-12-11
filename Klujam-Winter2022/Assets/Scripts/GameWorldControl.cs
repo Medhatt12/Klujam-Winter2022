@@ -21,6 +21,8 @@ public class GameWorldControl : MonoBehaviour
     private float ySpacer = 0;
     private float xSpacer = 0;
 
+    public string winnername;
+
     public bool player1Playing;
     public bool gameFinished = false;
 
@@ -156,6 +158,8 @@ public class GameWorldControl : MonoBehaviour
         {
             Debug.Log("PLAYER 1 IS THE WINNER");
             gameFinished = true;
+            winnername = "Player1";
+
             GetComponent<AudioSource>().Stop();
             GetComponent<AudioSource>().clip = victoryfx;
             GetComponent<AudioSource>().Play();
@@ -165,6 +169,8 @@ public class GameWorldControl : MonoBehaviour
         {
             Debug.Log("PLAYER 2 IS THE WINNER");
             gameFinished = true;
+            winnername = "Player2";
+
             GetComponent<AudioSource>().Stop();
             GetComponent<AudioSource>().clip = victoryfx;
             GetComponent<AudioSource>().Play();
