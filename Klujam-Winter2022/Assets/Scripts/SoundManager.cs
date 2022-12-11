@@ -7,9 +7,6 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
 
-    [SerializeField]
-    private AudioClip UIButonClickSound;
-
     public float Volume = 1f;
 
     private AudioSource source;
