@@ -146,6 +146,7 @@ public class GameWorldControl : MonoBehaviour
                 GameWorld[i, j].GetComponent<TileBehavior>().hideValues();
                 GameWorld[i, j].GetComponent<TileBehavior>().numOfPlayer1fishes = 0;
                 GameWorld[i, j].GetComponent<TileBehavior>().numOfPlayer1fishes = 0;
+                GameWorld[i, j].GetComponent<TileBehavior>().maxNumberOfPoints = 9;
             }
         }
         Timer.instance.timerIsRunning = true;
