@@ -83,7 +83,7 @@ public class GameWorldControl : MonoBehaviour
         }
         pointsManager.instance.addPoints(roundScoreplayer1);
         pointsManager.instance.addPointsPlayer2(roundScoreplayer2);
-        if(pointsManager.instance.points<=0 | pointsManager.instance.pointsPlayer2 <= 0)
+        if(pointsManager.instance.points<=0 || pointsManager.instance.pointsPlayer2 <= 0)
         {
             checkWinner();
         }
