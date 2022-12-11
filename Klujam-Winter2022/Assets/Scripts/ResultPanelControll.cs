@@ -7,6 +7,9 @@ public class ResultPanelControll : LevelLoader
 {
     public TextMeshProUGUI textMeshLeft, textMeshRight;
     public TextMeshProUGUI playerNameLeft, playerNameRight;
+
+    public TextMeshProUGUI Winner;
+
     public GameObject container, toHide;
     
 
@@ -32,6 +35,15 @@ public class ResultPanelControll : LevelLoader
             toHide.SetActive(false);
             textMeshLeft.SetText("" + pointsManager.instance.points);
             textMeshRight.SetText("" + pointsManager.instance.pointsPlayer2);
+
+            if(GameWorldControl.instance.winnername== "Player1")
+            {
+                Winner.SetText("Winner is " + playerNameLeft.text);
+            }else if (GameWorldControl.instance.winnername == "Player2")
+            {
+                Winner.SetText("Winner is " + playerNameRight.text);
+            }
+
         }
     }
 
